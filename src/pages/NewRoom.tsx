@@ -5,8 +5,11 @@ import '../styles/auth.scss';
 
 import { Button } from '../components/Button';
 import { Link } from 'react-router-dom';
+// import { useAuth } from '../hooks/useAuth';
 
 export function NewRoom() {
+    // const { user } = useAuth();
+
     return (
         <div id="auth-page">
             <aside>
@@ -17,7 +20,7 @@ export function NewRoom() {
             <main>
                 <div className="main-content">
                     <img src={logo} alt="Letmeask" />
-                    <h2>Create a new room</h2>                    
+                    <h2>Create a new room</h2>
                     <form>
                         <input type="text" placeholder="Type a code for the new room" />
                         <Button type="submit">Create room</Button>
