@@ -51,7 +51,7 @@ export function Home() {
             </aside>
             <main>
                 <div className="main-content">
-                    <img src={logo} alt="Letmeask" />
+                    <img src={logo} alt="Application's logotype - Let me ask" />
                     <button className="google-account" onClick={handleNewRoom}>
                         <img src={googleIcon} alt="Google's logotype" />
                         Crie sua sala com o Google
