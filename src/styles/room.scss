@@ -64,7 +64,25 @@ main {
             justify-content: space-between;
             margin-top: 16px;
 
-            span {
+            .user-info {
+                display: flex;
+                align-items: center;
+        
+                > img {
+                    border-radius: 50%;
+                    width: 32px;
+                    height: 32px;
+                }
+        
+                > span {
+                    margin-left: 8px;
+                    font-weight: 500;
+                    font-size: 14px;
+                    color: #29292e;
+                }
+            }
+
+            > span {
                 font-size: 14px;
                 color: #737380;
                 font-weight: 500;
