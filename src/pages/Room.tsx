@@ -1,12 +1,21 @@
-import logo from '../assets/images/logo.svg';
-import copy from '../assets/images/copy.svg';
-import emptyQuestions from '../assets/images/empty-questions.svg'
 import { FormEvent } from 'react';
+import { useParams } from 'react-router-dom';
+
+import logo from '../assets/images/logo.svg';
+import emptyQuestions from '../assets/images/empty-questions.svg'
+
 import { Button } from '../components/Button';
+import { RoomCode } from '../components/RoomCode';
 
 import '../styles/room.scss';
 
+type RoomParam = {
+    id: string;
+}
+
 export function Room() {
+    const params = useParams<RoomParam>();
+    
     function handleSubmitQuestion(event:FormEvent) {
         event.preventDefault();
     }
@@ -17,8 +26,7 @@ export function Room() {
                 <div className="content">
                     <img src={logo} alt="Application's logotype - Let me ask" />
                     <div>
-                        {/* <img src={copy} alt="A copy button to " /> */}
-                        Room #123456
+                        <RoomCode code={params.id} />
                     </div>
                 </div>
             </header>
