@@ -1,7 +1,8 @@
-import { FormEvent, useEffect, useState } from 'react';
+import { FormEvent, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 import { useAuth } from '../../hooks/useAuth';
+import { useRoom } from '../../hooks/useRoom';
 import { database } from '../../services/firebase';
 
 import logo from '../../assets/images/logo.svg';
@@ -9,66 +10,23 @@ import emptyQuestions from '../../assets/images/empty-questions.svg';
 
 import { Button } from '../../components/Button';
 import { RoomCode } from '../../components/RoomCode';
+import { Question } from '../../components/Question';
 
 import './styles.scss';
-import { Question } from '../../components/Question';
 
 type RoomParam = {
     id: string;
 }
 
-type FirebaseQuestions = Record<string, {
-    author: {
-        avatar: string;
-        name: string;
-    }
-    content: string;
-    isAnswered: boolean;
-    isHighlighted: boolean;
-}>
-
-type Questions = {
-    id: string;
-    author: {
-        avatar: string;
-        name: string;
-    }
-    content: string;
-    isAnswered: boolean;
-    isHighlighted: boolean;
-}
-
 export function Room() {
     const params = useParams<RoomParam>();
     const roomId = params.id;
+    const { title, questions } = useRoom(roomId);
 
     const [newQuestion, setNewQuestion] = useState('');
-    const [questions, setQuestions] = useState([] as Questions[]);
-    const [title, setTitle] = useState('');
+    
     const { user } = useAuth();
 
-    useEffect(() => {
-        const roomRef = database.ref(`rooms/${roomId}`);
-
-        roomRef.once('value', (data) => {
-            const room = data.val();
-            const firebaseQuestions: FirebaseQuestions = room.questions ?? {} as FirebaseQuestions;
-
-            const parsedQuestions = Object.entries(firebaseQuestions).map(([questionId, questionData]) => {
-                return {
-                    id: questionId,
-                    author: questionData.author,
-                    content: questionData.content,
-                    isAnswered: questionData.isAnswered,
-                    isHighlighted: questionData.isHighlighted,
-                }
-            })
-
-            setQuestions(parsedQuestions);
-            setTitle(room.title);
-        })
-    }, [roomId])
-    
     async function handleSubmitQuestion(event:FormEvent) {
         event.preventDefault();
 
@@ -96,7 +54,6 @@ export function Room() {
 
     return (
         <div id="room-page">
-            {console.log(newQuestion)}
             <header>
                 <div className="content">
                     <img src={logo} alt="Application's logotype - Let me ask" />
@@ -107,8 +64,9 @@ export function Room() {
             </header>
             <main>
                 <div className="room-title">
+                    {console.log(`algo: ${title}`)}
                     <h1>Room: {title}</h1>
-                    { questions.length && <span>{questions.length} question(s)</span> }
+                    { questions.length > 0 && <span>{questions.length} question(s)</span> }
                 </div>
                 <form onSubmit={handleSubmitQuestion}>
                     <textarea 
