@@ -2,20 +2,31 @@
     header {        
         padding: 24px;
         border-bottom: 1px solid #e2e2e2;
-    }
+        
+        .content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+    
+            max-width: 1220px;
+            margin: 0 auto;
+    
+            > img {
+                max-height: 45px;
+            }
 
-    .content {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+            > div {
+                display: flex;
+                align-items: center;
+                gap: 9px;
 
-        max-width: 1220px;
-        margin: 0 auto;
-
-        > img {
-            max-height: 45px;
+                > button {
+                    height: 40px;                    
+                }
+            }
         }
     }
+
 }
 
 main {

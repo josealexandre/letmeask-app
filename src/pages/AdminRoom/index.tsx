@@ -18,40 +18,11 @@ type RoomParam = {
     id: string;
 }
 
-export function Room() {
+export function AdminRoom() {
     const params = useParams<RoomParam>();
     const roomId = params.id;
     const { title, questions } = useRoom(roomId);
-
-    const [newQuestion, setNewQuestion] = useState('');
     
-    const { user } = useAuth();
-
-    async function handleSubmitQuestion(event:FormEvent) {
-        event.preventDefault();
-
-        if (newQuestion === '') {
-            return;
-        }
-
-        if (!user) {
-            throw new Error('You must be logged in.');
-        }
-
-        const question = {
-            content: newQuestion,
-            author: {
-                name: user.name,
-                avatar: user.avatar
-            },
-            isHighlighted: false,
-            isAnswered: false,
-        }
-
-        await database.ref(`rooms/${roomId}/questions`).push(question)
-        setNewQuestion('');
-    }
-
     return (
         <div id="room-page">
             <header>
@@ -59,6 +30,7 @@ export function Room() {
                     <img src={logo} alt="Application's logotype - Let me ask" />
                     <div>
                         <RoomCode code={roomId} />
+                        <Button isOutlined={true}>Encerrar sala</Button>
                     </div>
                 </div>
             </header>
@@ -67,27 +39,7 @@ export function Room() {
                     {console.log(`algo: ${title}`)}
                     <h1>Room: {title}</h1>
                     { questions.length > 0 && <span>{questions.length} question(s)</span> }
-                </div>
-                <form onSubmit={handleSubmitQuestion}>
-                    <textarea 
-                        placeholder="What do you have in mind?" 
-                        onChange={ (event) => setNewQuestion(event.target.value) }
-                        value = {newQuestion}
-                    />
-                    <div className="form-footer">
-                        { user ? (
-                            <div className="user-info">
-                                <img src={user.avatar} alt={user.name} />
-                                <span>{user.name}</span>
-                            </div>
-                        ) : (
-                            <span>
-                                <button>Sign in</button> to send a question
-                            </span>
-                        )}
-                        <Button type="submit" disabled={!user}>Send question</Button>
-                    </div>
-                </form>
+                </div>                
                 <div className="room-questions">
                     { questions.map(question => (
                         <Question key={question.id} author={question.author} content={question.content}></Question>
