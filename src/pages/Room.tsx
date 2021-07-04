@@ -11,6 +11,7 @@ import { Button } from '../components/Button';
 import { RoomCode } from '../components/RoomCode';
 
 import '../styles/room.scss';
+import { Question } from '../components/Question';
 
 type RoomParam = {
     id: string;
@@ -130,9 +131,13 @@ export function Room() {
                     </div>
                 </form>
                 <div className="room-questions">
-                    <img src={emptyQuestions} alt="Illustration that represents questions" />
+                    { questions.map(question => (
+                        <Question key={question.id} author={question.author} content={question.content}></Question>
+                    )) }
+                    
+                    {/* <img src={emptyQuestions} alt="Illustration that represents questions" />
                     <strong>No questions around here</strong>
-                    <p>Sign in to be the first asking a question!</p>
+                    <p>Sign in to be the first asking a question!</p> */}                    
                 </div>
             </main>
         </div>
