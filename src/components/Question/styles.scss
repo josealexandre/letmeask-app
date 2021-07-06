@@ -17,22 +17,48 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-    }
+        
+        .user-info {
+            display: flex;
+            align-items: center;
+        
+            img {
+                width: 32px;
+                height: 32px;
+                border-radius: 50%;
+            }
+        
+            > span {
+                padding: 8px;
+                font-size: 14px;
+                color: #737380;
+            }
+        }
 
-    .user-info {
-        display: flex;
-        align-items: center;
-    
-        img {
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
+        button {            
+            background: transparent;
+            border: 0;
+            cursor: pointer;
+            
+            &.like-button {
+                display: flex;
+                align-items: flex-end;
+                gap: 11px;
+                color: #737380;
+
+                transition: filter 0.2s;
+
+                &.liked {
+                    svg path {
+                        stroke: #835afd;
+                    }
+                }
+
+                &:hover {
+                    filter: brightness(0.2);                    
+                }
+            }
+            
         }
-    
-        > span {
-            padding: 8px;
-            font-size: 14px;
-            color: #737380;
-        }
-    }    
+    }
 }

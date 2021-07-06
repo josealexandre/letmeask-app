@@ -1,12 +1,12 @@
-import { FormEvent, useState } from 'react';
+// import { FormEvent, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
-import { useAuth } from '../../hooks/useAuth';
+// import { useAuth } from '../../hooks/useAuth';
 import { useRoom } from '../../hooks/useRoom';
-import { database } from '../../services/firebase';
+// import { database } from '../../services/firebase';
 
 import logo from '../../assets/images/logo.svg';
-import emptyQuestions from '../../assets/images/empty-questions.svg';
+// import emptyQuestions from '../../assets/images/empty-questions.svg';
 
 import { Button } from '../../components/Button';
 import { RoomCode } from '../../components/RoomCode';
@@ -36,13 +36,14 @@ export function AdminRoom() {
             </header>
             <main>
                 <div className="room-title">
-                    {console.log(`algo: ${title}`)}
                     <h1>Room: {title}</h1>
                     { questions.length > 0 && <span>{questions.length} question(s)</span> }
                 </div>                
                 <div className="room-questions">
                     { questions.map(question => (
-                        <Question key={question.id} author={question.author} content={question.content}></Question>
+                        <Question key={question.id} author={question.author} content={question.content}>
+                            
+                        </Question>
                     )) }
                     
                     {/* <img src={emptyQuestions} alt="Illustration that represents questions" />
