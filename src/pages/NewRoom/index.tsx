@@ -4,8 +4,8 @@ import { Link, useHistory } from 'react-router-dom';
 import { useAuth } from '../../hooks/useAuth';
 import { database } from '../../services/firebase';
 
-import logo from '../../assets/images/logo.svg';
-import illustration from '../../assets/images/illustration.svg';
+import logoImg from '../../assets/images/logo.svg';
+import illustrationImg from '../../assets/images/illustration.svg';
 
 import { Button } from '../../components/Button';
 
@@ -36,13 +36,13 @@ export function NewRoom() {
     return (
         <div id="auth-page">
             <aside>
-                <img src={illustration} alt="Illustration that represents questions and answers" />
+                <img src={illustrationImg} alt="Illustration that represents questions and answers" />
                 <strong>Create live Q&amp;A rooms</strong>
                 <p>Answer questions from your audience in real time</p>
             </aside>
             <main>
                 <div className="main-content">
-                    <img src={logo} alt="Letmeask" />
+                    <img src={logoImg} alt="Letmeask" />
                     <h2>Create a new room</h2>
                     <form onSubmit={handleCreateRoom}>
                         <input 

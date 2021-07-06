@@ -4,8 +4,8 @@ import { useHistory } from 'react-router-dom';
 import { useAuth } from '../../hooks/useAuth';
 import { database } from '../../services/firebase';
 
-import logo from '../../assets/images/logo.svg';
-import illustration from '../../assets/images/illustration.svg';
+import logoImg from '../../assets/images/logo.svg';
+import illustrationImg from '../../assets/images/illustration.svg';
 import googleIcon from '../../assets/images/google-icon-colorful.svg';
 
 import { Button } from '../../components/Button';
@@ -36,7 +36,12 @@ export function Home() {
         const room = await roomRef.get();
 
         if(!room.exists()) {
-            alert('Room does not exist');
+            alert('This room does not exist');
+            return;
+        }
+
+        if(room.val().closedAt) {
+            alert('This room is already closed');
             return;
         }
 
@@ -46,13 +51,13 @@ export function Home() {
     return (
         <div id="auth-page">
             <aside>
-                <img src={illustration} alt="Illustration that represents questions and answers" />
+                <img src={illustrationImg} alt="Illustration that represents questions and answers" />
                 <strong>Create live Q&amp;A rooms</strong>
                 <p>Answer questions from your audience in real time</p>
             </aside>
             <main>
                 <div className="main-content">
-                    <img src={logo} alt="Application's logotype - Let me ask" />
+                    <img src={logoImg} alt="Application's logotype - Let me ask" />
                     <button className="google-account" onClick={handleNewRoom}>
                         <img src={googleIcon} alt="Google's logotype" />
                         Crie sua sala com o Google

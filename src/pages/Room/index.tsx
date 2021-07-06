@@ -5,8 +5,8 @@ import { useAuth } from '../../hooks/useAuth';
 import { useRoom } from '../../hooks/useRoom';
 import { database } from '../../services/firebase';
 
-import logo from '../../assets/images/logo.svg';
-// import emptyQuestions from '../../assets/images/empty-questions.svg';
+import logoImg from '../../assets/images/logo.svg';
+// import emptyQuestionsImg from '../../assets/images/empty-questions.svg';
 
 import { Button } from '../../components/Button';
 import { RoomCode } from '../../components/RoomCode';
@@ -67,7 +67,7 @@ export function Room() {
         <div id="room-page">
             <header>
                 <div className="content">
-                    <img src={logo} alt="Application's logotype - Let me ask" />
+                    <img src={logoImg} alt="Application's logotype - Let me ask" />
                     <div>
                         <RoomCode code={roomId} />
                     </div>
