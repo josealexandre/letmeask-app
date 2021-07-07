@@ -4,6 +4,31 @@
     box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
     padding: 24px;
 
+    &.highlighted {
+        border: 1px solid #835afd;
+        background: #f4f0ff;
+    
+        footer .user-info span {
+            color: #29292e;
+        }
+
+        footer .question-actions {
+            .highlight-button {
+                svg path {
+                    stroke: #835afd;
+                }
+            }
+        }
+    }
+    
+    &.answered {
+        background: #dbdcdd;
+
+        footer .user-info img {
+            filter: brightness(0.7);
+        }
+    }
+
     & + .question {
         margin-top: 8px;
     }
@@ -35,29 +60,35 @@
             }
         }
 
-        button {            
-            background: transparent;
-            border: 0;
-            cursor: pointer;
+        .question-actions {
+            display: flex;
+            gap: 16px;
 
-            transition: filter 0.2s;
-
-            &:hover {
-                filter: brightness(0.2);                    
+            button {            
+                background: transparent;
+                border: 0;
+                cursor: pointer;
+    
+                transition: filter 0.2s;
+    
+                &:hover {
+                    filter: brightness(0.2);                    
+                }
+                
+                &.like-button {
+                    display: flex;
+                    align-items: flex-end;
+                    gap: 11px;
+                    color: #737380;
+    
+                    &.liked {
+                        svg path {
+                            stroke: #835afd;
+                        }
+                    }                
+                }
             }
-            
-            &.like-button {
-                display: flex;
-                align-items: flex-end;
-                gap: 11px;
-                color: #737380;
-
-                &.liked {
-                    svg path {
-                        stroke: #835afd;
-                    }
-                }                
-            }
-        }
+        }        
     }
 }
+
