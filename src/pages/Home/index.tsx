@@ -60,17 +60,17 @@ export function Home() {
                     <img src={logoImg} alt="Application's logotype - Let me ask" />
                     <button className="google-account" onClick={handleNewRoom}>
                         <img src={googleIcon} alt="Google's logotype" />
-                        Crie sua sala com o Google
+                        Create a room with Google
                     </button>
-                    <div className="separator">ou entre em uma sala</div>
+                    <div className="separator">or join a room</div>
                     <form onSubmit={handleJoinRoom}>
                         <input 
                             type="text" 
-                            placeholder="Digite o código da sala" 
+                            placeholder="Type the room's code" 
                             onChange={ event => setRoomCode(event.target.value) }
                             value={roomCode}
                         />
-                        <Button type="submit">Entrar na sala</Button>
+                        <Button type="submit">Join room</Button>
                     </form>
                 </div>
             </main>
