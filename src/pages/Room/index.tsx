@@ -122,9 +122,9 @@ export function Room() {
                         </Question>
                     )) }
                     
-                    {/* <img src={emptyQuestions} alt="Illustration that represents questions" />
+                    {/* <img src={emptyQuestionsImg} alt="Illustration that represents questions" />
                     <strong>No questions around here</strong>
-                    <p>Sign in to be the first asking a question!</p> */}                    
+                    <p>Sign in to be the first asking a question!</p> */}
                 </div>
             </main>
         </div>

@@ -1,9 +1,7 @@
-// import { FormEvent, useState } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 
-// import { useAuth } from '../../hooks/useAuth';
 import { useRoom } from '../../hooks/useRoom';
-// import { database } from '../../services/firebase';
+import { database } from '../../services/firebase';
 
 import logoImg from '../../assets/images/logo.svg';
 import checkImg from '../../assets/images/check.svg';
@@ -15,7 +13,6 @@ import { RoomCode } from '../../components/RoomCode';
 import { Question } from '../../components/Question';
 
 import '../../shared/styles/room.scss';
-import { database } from '../../services/firebase';
 
 type RoomParam = {
     id: string;
@@ -99,9 +96,9 @@ export function AdminRoom() {
                         </Question>
                     )) }
                     
-                    {/* <img src={emptyQuestions} alt="Illustration that represents questions" />
+                    {/* <img src={emptyQuestionsImg} alt="Illustration that represents questions" />
                     <strong>No questions around here</strong>
-                    <p>Sign in to be the first asking a question!</p> */}                    
+                    <p>Sign in to be the first asking a question!</p> */}
                 </div>
             </main>
         </div>
