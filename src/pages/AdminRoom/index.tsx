@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 
 import { useRoom } from '../../hooks/useRoom';
@@ -11,6 +12,7 @@ import emptyQuestionsImg from '../../assets/images/empty-questions.svg';
 import { Button } from '../../components/Button';
 import { RoomCode } from '../../components/RoomCode';
 import { Question } from '../../components/Question';
+import { ConfirmationModal } from '../../components/ConfirmationModal';
 
 import '../../shared/styles/room.scss';
 
@@ -23,6 +25,8 @@ export function AdminRoom() {
     const params = useParams<RoomParam>();
     const roomId = params.id;
     const { title, questions } = useRoom(roomId);
+    const [isModalOpened, setIsModalOpened] = useState(false);
+    const [selectedQuestionId, setSelectedQuestionId] = useState('');
 
     async function handleCloseRoom(roomId: string) {
         if (window.confirm('Are you sure you want to close this room?')) {
@@ -47,10 +51,14 @@ export function AdminRoom() {
         });
     }
 
-    async function handleDeleteQuestion(questionId: string) {
-        if (window.confirm('Are you sure you want to delete this question?')) {
-            await database.ref(`rooms/${roomId}/questions/${questionId}`).remove();
-        }
+    async function handleConfirmDeletion(questionId: string) {
+        setIsModalOpened(true);
+        setSelectedQuestionId(questionId);
+    }
+
+    async function handleDeleteQuestion() {
+        await database.ref(`rooms/${roomId}/questions/${selectedQuestionId}`).remove();
+        setIsModalOpened(false);
     }
     
     return (
@@ -93,7 +101,7 @@ export function AdminRoom() {
                                         </>
                                     }
                                     <button>
-                                        <img src={deleteImg} alt="Delete question" onClick={() => handleDeleteQuestion(question.id)} />
+                                        <img src={deleteImg} alt="Delete question" onClick={() => handleConfirmDeletion(question.id)} />
                                     </button>
                                 </Question>
                             )) }
@@ -107,6 +115,16 @@ export function AdminRoom() {
                     )}
                 </div>
             </main>
+            <ConfirmationModal
+                isOpen={isModalOpened}
+                illustration={deleteImg}
+                title="Delete question"
+                description="Are you sure you want to delete this question?"
+                cancelButtonLabel="Cancel"
+                confirmButtonLabel="Yes, delete it"
+                cancelButtonAction={() => setIsModalOpened(false)}
+                confirmButtonAction={handleDeleteQuestion}
+            ></ConfirmationModal>
         </div>
     )
 }

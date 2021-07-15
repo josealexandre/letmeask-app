@@ -21,6 +21,15 @@
         color: #835afd;
     }
 
+    &.danger {
+        background: #e73f5d;
+    }
+
+    &.light {
+        background: #dbdcdd;
+        color: #737380;
+    }
+
     img {
         margin-right: 8px;
     }

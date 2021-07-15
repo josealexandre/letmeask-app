@@ -1,0 +1,44 @@
+.confirmation-modal {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    background: #fff;
+    border-radius: 8px;
+
+    width: 590px;
+    height: 362px;
+    
+    position: absolute;
+    left: 50%;
+    right: auto;
+    top: 40%;
+    bottom: auto;
+    transform: translate(-50%, -50%);
+
+    > img {
+        height: 48px;
+    }
+
+    > h2 {
+        margin: 24px 0 12px;
+        font: 700 24px 'Poppins', sans-serif;
+    }
+
+    > div {
+        display: flex;
+        gap: 8px;
+        margin-top: 40px;
+    }
+}
+
+.confirmation-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 10px;
+    bottom: 0;
+
+    background-color: rgba(5, 2, 6, 0.8);
+}
