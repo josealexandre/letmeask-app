@@ -111,7 +111,35 @@ main {
         }
     }
 
-    .room-questions {
-        margin: 32px 0;
+    .room-questions-container {
+        display: flex;
+        justify-content: center;
+
+        .room-questions-content {
+            margin: 32px 0;
+            width: 100%;
+        }
+    
+        .no-questions-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            
+            margin-top: 56px;
+            width: 284px;
+    
+            > img {
+                margin: 8px;
+            }
+    
+            > strong {
+                margin: 8px;
+            }
+
+            > p {
+                text-align: center;
+            }
+        }
     }
 }
