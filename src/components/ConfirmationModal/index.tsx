@@ -19,8 +19,11 @@ export function ConfirmationModal(props: ConfirmationModalProps) {
     return (
         <Modal
             isOpen = {props.isOpen}
+            closeTimeoutMS={200}
             className="confirmation-modal"
             overlayClassName="confirmation-modal-overlay"
+            shouldCloseOnOverlayClick={true}
+            onRequestClose={props.cancelButtonAction}
         >
             <img src={props.illustration} alt="Illustration that represents a trash" />
             <h2>{props.title}</h2>
