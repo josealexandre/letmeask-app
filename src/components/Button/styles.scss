@@ -15,23 +15,19 @@
 
     transition: filter 0.2s;
 
-    &.outlined {
+    &.button--outlined {
         background: #fff;
         border: 1px solid #835afd;
         color: #835afd;
     }
 
-    &.danger {
+    &.button--danger {
         background: #e73f5d;
     }
 
-    &.light {
+    &.button--light {
         background: #dbdcdd;
         color: #737380;
-    }
-
-    img {
-        margin-right: 8px;
     }
 
     &:not(:disabled):hover {
@@ -41,5 +37,9 @@
     &:disabled {
         opacity: 0.6;
         cursor: not-allowed;
+    }
+
+    img {
+        margin-right: 8px;
     }
 }

@@ -17,9 +17,9 @@ export function Button({
     return(
         <button 
             className={
-                `button ${isOutlined ? 'outlined' : ''}
-                    ${isDanger ? 'danger': ''}
-                    ${isLight ? 'light': ''}`
+                `button ${isOutlined ? 'button--outlined' : ''}
+                    ${isDanger ? 'button--danger': ''}
+                    ${isLight ? 'button--light': ''}`
             }
             {...props}
         />
