@@ -7,6 +7,7 @@ import { database } from '../../services/firebase';
 import logoImg from '../../assets/images/logo.svg';
 import checkImg from '../../assets/images/check.svg';
 import deleteImg from '../../assets/images/delete.svg';
+import closeImg from '../../assets/images/close.svg';
 import emptyQuestionsImg from '../../assets/images/empty-questions.svg';
 
 import { Button } from '../../components/Button';
@@ -25,17 +26,20 @@ export function AdminRoom() {
     const params = useParams<RoomParam>();
     const roomId = params.id;
     const { title, questions } = useRoom(roomId);
-    const [isModalOpened, setIsModalOpened] = useState(false);
+    const [isDeletionModalOpened, setIsDeletionModalOpened] = useState(false);
+    const [isClosingModalOpened, setIsClosingModalOpened] = useState(false);
     const [selectedQuestionId, setSelectedQuestionId] = useState('');
 
-    async function handleCloseRoom(roomId: string) {
-        if (window.confirm('Are you sure you want to close this room?')) {
-            await database.ref(`rooms/${roomId}`).update({
-                closedAt: new Date(),
-            });
+    async function handleClosingConfirmation() {
+        setIsClosingModalOpened(true);
+    }
 
-            history.push('/');
-        }
+    async function handleCloseRoom() {
+        await database.ref(`rooms/${roomId}`).update({
+            closedAt: new Date(),
+        });
+
+        history.push('/');
     }
 
     async function handleMarkAsAnsweredQuestion(questionId: string) {
@@ -51,14 +55,14 @@ export function AdminRoom() {
         });
     }
 
-    async function handleConfirmDeletion(questionId: string) {
-        setIsModalOpened(true);
+    async function handleDeletionConfirmation(questionId: string) {
+        setIsDeletionModalOpened(true);
         setSelectedQuestionId(questionId);
     }
 
     async function handleDeleteQuestion() {
         await database.ref(`rooms/${roomId}/questions/${selectedQuestionId}`).remove();
-        setIsModalOpened(false);
+        setIsDeletionModalOpened(false);
     }
     
     return (
@@ -68,7 +72,7 @@ export function AdminRoom() {
                     <img src={logoImg} alt="Application's logotype - Let me ask" />
                     <div>
                         <RoomCode code={roomId} />
-                        <Button isOutlined={true} onClick={() => handleCloseRoom(roomId)}>Encerrar sala</Button>
+                        <Button isOutlined={true} onClick={handleClosingConfirmation}>Encerrar sala</Button>
                     </div>
                 </div>
             </header>
@@ -101,7 +105,7 @@ export function AdminRoom() {
                                         </>
                                     }
                                     <button>
-                                        <img src={deleteImg} alt="Delete question" onClick={() => handleConfirmDeletion(question.id)} />
+                                        <img src={deleteImg} alt="Delete question" onClick={() => handleDeletionConfirmation(question.id)} />
                                     </button>
                                 </Question>
                             )) }
@@ -116,14 +120,24 @@ export function AdminRoom() {
                 </div>
             </main>
             <ConfirmationModal
-                isOpen={isModalOpened}
+                isOpen={isDeletionModalOpened}
                 illustration={deleteImg}
                 title="Delete question"
                 description="Are you sure you want to delete this question?"
                 cancelButtonLabel="Cancel"
                 confirmButtonLabel="Yes, delete it"
-                cancelButtonAction={() => setIsModalOpened(false)}
+                cancelButtonAction={() => setIsDeletionModalOpened(false)}
                 confirmButtonAction={handleDeleteQuestion}
+            ></ConfirmationModal>
+            <ConfirmationModal
+                isOpen={isClosingModalOpened}
+                illustration={closeImg}
+                title="Close room"
+                description="Are you sure you want to close this room?"
+                cancelButtonLabel="Cancel"
+                confirmButtonLabel="Yes, close it"
+                cancelButtonAction={() => setIsClosingModalOpened(false)}
+                confirmButtonAction={handleCloseRoom}
             ></ConfirmationModal>
         </div>
     )
