@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState, ReactNode } from "react"
-import firebase from "firebase"
+import firebase from "firebase/app"
 
 import { auth } from "../services/firebase"
 

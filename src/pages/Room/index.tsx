@@ -76,6 +76,11 @@ export function Room() {
                     <img src={logoImg} alt="Application's logotype - Let me ask" />
                     <div>
                         <RoomCode code={roomId} />
+                        { user && 
+                            <Button isOutlined={true} onClick={() => history.push(`/admin/rooms/${roomId}`)}>
+                                Admin view
+                            </Button>
+                        }
                     </div>
                 </div>
             </header>

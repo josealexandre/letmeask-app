@@ -72,7 +72,10 @@ export function AdminRoom() {
                     <img src={logoImg} alt="Application's logotype - Let me ask" />
                     <div>
                         <RoomCode code={roomId} />
-                        <Button isOutlined={true} onClick={handleClosingConfirmation}>Encerrar sala</Button>
+                        <Button isOutlined={true} onClick={() => history.push(`/rooms/${roomId}`)}>
+                                User view
+                            </Button>
+                        <Button  onClick={handleClosingConfirmation}>Close room</Button>
                     </div>
                 </div>
             </header>
