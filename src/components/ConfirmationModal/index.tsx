@@ -16,6 +16,8 @@ type ConfirmationModalProps = {
 }
 
 export function ConfirmationModal(props: ConfirmationModalProps) {
+    Modal.setAppElement('#root');
+
     return (
         <Modal
             isOpen = {props.isOpen}
