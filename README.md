@@ -1,46 +1,36 @@
-# Getting Started with Create React App
+# Letmeask app
+
+A Q&A application developed using ReactJS and Firebase for study purposes.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+![image](https://user-images.githubusercontent.com/4960681/149278807-e2ce8261-c7c1-433f-9c6e-0021f80a58dd.png)
 
-In the project directory, you can run:
+![image](https://user-images.githubusercontent.com/4960681/149279264-cac09fd9-7ad9-432b-894b-d2c747d9807b.png)
 
-### `yarn start`
+![image](https://user-images.githubusercontent.com/4960681/149279569-0255b06a-34b6-44c9-bb08-e57d738dd5d3.png)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+![image](https://user-images.githubusercontent.com/4960681/149279635-338b7984-cca9-416f-8c4e-9554c2cd426b.png)
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
 
-### `yarn test`
+## Useful resources
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Here are some packages and tools used in this project:
 
-### `yarn build`
+- Firebase Realtime Database
+- Firebase Google Authentication
+- Firebase Hosting
+- Typescript
+- ReactJS API context
+- ReactJS hooks
+- eslint
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Instructions to run the project
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+1) Before starting the application you need to install all dependencies. You can do it by running `yarn` from within the project's folder.
+2) You might also need to create a Firebase project and setup configuration files in the project.
+3) Then you can start the project by running `yarn start`
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+If you prefer, you can take a look at the app hosted in Firebase by clicking on the following link:
 
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+https://letmeask-app-203b7.firebaseapp.com/
